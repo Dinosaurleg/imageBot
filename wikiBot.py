@@ -36,7 +36,7 @@ async def on_message(message):
 			msg = 'You forgot to input a query {0.author.mention}.'.format(message)
 			await client.send_message(message.channel, msg)
 	else:
-		msg = 'Not a valid command m8.'
+		msg = 'Not a valid command {0.author.mention.'.format(message)
 		await client.send_message(message.channel, msg)
 
 @client.event
