@@ -1,2 +1,5 @@
 # CONFIG
 config.json
+
+# OTHER
+__pycache__/
