@@ -64,7 +64,7 @@ def get_summary(query):
 		return split_summary(page.summary)
 	else:
 		print('Page does not exist.')
-		return 'Not a Wikipedia Page.'
+		return ['Not a Wikipedia page.']
 
 def split_summary(summary):
 	print(summary)
