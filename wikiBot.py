@@ -18,29 +18,32 @@ async def on_message(message):
 	if message.author == client.user:
 		return
 
-	if message.content.startswith('$s' or '$search'):
-		print('Message: ', message.content)
-		command = message.content.split(' ', 1)
-		if len(command) > 1:
-			cmd = command[0]
-			query = command[1]
+	if message.content.startswith('$'):
+		if message.content.startswith('$s' or '$search'):
+			print('Message: ', message.content)
+			command = message.content.split(' ', 1)
+			if len(command) > 1:
+				cmd = command[0]
+				query = command[1]
 
-			if not query.isspace():
-				print('Command: ', cmd)
-				print('Query: ', query)
-				summ = get_summary(query)
+				if not query.isspace():
+					print('Command: ', cmd)
+					print('Query: ', query)
+					summ = get_summary(query)
 
-				for seg in summ:
-					await client.send_message(message.channel, seg)
+					for seg in summ:
+						await client.send_message(message.channel, seg)
+				else:
+					msg = 'You forgot to input a query {0.author.mention}.'.format(message)
+					await client.send_message(message.channel, msg)
 			else:
 				msg = 'You forgot to input a query {0.author.mention}.'.format(message)
 				await client.send_message(message.channel, msg)
 		else:
-			msg = 'You forgot to input a query {0.author.mention}.'.format(message)
+			msg = 'Not a valid command {0.author.mention}.'.format(message)
 			await client.send_message(message.channel, msg)
 	else:
-		msg = 'Not a valid command {0.author.mention}.'.format(message)
-		await client.send_message(message.channel, msg)
+		return
 
 @client.event
 async def on_ready():
