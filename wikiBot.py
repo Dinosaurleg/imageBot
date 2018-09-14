@@ -28,7 +28,10 @@ async def on_message(message):
 			if not query.isspace():
 				print('Command: ', cmd)
 				print('Query: ', query)
-				await client.send_message(message.channel, get_summary(query))
+				summ = get_summary(query)
+
+				for seg in summ:
+					await client.send_message(message.channel, seg)
 			else:
 				msg = 'You forgot to input a query {0.author.mention}.'.format(message)
 				await client.send_message(message.channel, msg)
@@ -36,7 +39,7 @@ async def on_message(message):
 			msg = 'You forgot to input a query {0.author.mention}.'.format(message)
 			await client.send_message(message.channel, msg)
 	else:
-		msg = 'Not a valid command {0.author.mention.'.format(message)
+		msg = 'Not a valid command {0.author.mention}.'.format(message)
 		await client.send_message(message.channel, msg)
 
 @client.event
@@ -66,6 +69,6 @@ def split_summary(summary):
 	if sum_len > 2000:
 		return [summary[i:i + 1500] for i in range(0, sum_len, 1500)]
 	else:
-		return summary
+		return [summary]
 
 client.run(BOT_TOKEN)
