@@ -19,7 +19,7 @@ async def on_message(message):
 		return
 
 	if message.content.startswith('$'):
-		if message.content.startswith('$s' or '$search'):
+		if message.content.startswith('$s' or '$S' or '$search'):
 			print('Message: ', message.content)
 			command = message.content.split(' ', 1)
 			if len(command) > 1:
