@@ -32,16 +32,16 @@ async def on_message(message):
 					summ = get_summary(query)
 
 					for seg in summ:
-						await client.send_message(message.channel, seg)
+						await message.channel.send(seg)
 				else:
 					msg = 'You forgot to input a query {0.author.mention}.'.format(message)
-					await client.send_message(message.channel, msg)
+					await message.channel.send(message.channel, msg)
 			else:
 				msg = 'You forgot to input a query {0.author.mention}.'.format(message)
-				await client.send_message(message.channel, msg)
+				await message.channel.send(message.channel, msg)
 		else:
 			msg = 'Not a valid command {0.author.mention}.'.format(message)
-			await client.send_message(message.channel, msg)
+			await message.channel.send(msg)
 	else:
 		return
 
